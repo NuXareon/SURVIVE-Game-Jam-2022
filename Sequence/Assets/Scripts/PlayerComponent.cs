@@ -18,10 +18,6 @@ public class PlayerComponent : MonoBehaviour
     void Start()
     {
         mRigidBody = GetComponent<Rigidbody>();
-
-        // TODO this probably needs to go to another file
-        gravityPull = Physics.gravity.magnitude;
-        Physics.gravity = new Vector3(1.0f, 0.0f, 0.0f) * gravityPull;
     }
 
     // Update is called once per frame
@@ -33,7 +29,7 @@ public class PlayerComponent : MonoBehaviour
         }
         else
         {
-            sidewaysInput = Input.GetAxis("Horizontal");
+            sidewaysInput = -Input.GetAxis("Horizontal");
         }
 
 
@@ -71,7 +67,8 @@ public class PlayerComponent : MonoBehaviour
             jump = false;
         }
 
-        Vector3 right = Vector3.Cross(Vector3.forward, groundDirection);
+        Vector3 groundDirectionPositive = new Vector3(Mathf.Abs(groundDirection.x), Mathf.Abs(groundDirection.y), 0.0f);
+        Vector3 right = Vector3.Cross(Vector3.forward, groundDirectionPositive);
         float currentSidewaysSpeed = mRigidBody.velocity.x * right.x + mRigidBody.velocity.y * right.y;
         if (sidewaysInput != 0.0f)
         {
