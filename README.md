@@ -30,3 +30,8 @@ Rule Sequence:
    * There are two types of rules:
       - Gravity changes (up, down, left, right)
       - Color changes (Red, Blue, Purple, ...)
+
+## Game Mechanics Strech goals
+* Unique BPM per map
+* Arrows with color
+* Exit attracts the player when close (blackhole)
