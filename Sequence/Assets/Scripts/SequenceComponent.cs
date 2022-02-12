@@ -18,10 +18,10 @@ public class SequenceBeat
     public enum ColorChange
     {
         None,
-        Red,
-        Green,
         Blue,
-        Purple
+        Orange,
+        Purple,
+        Green
     }
 
     [HideInInspector]
@@ -74,10 +74,13 @@ public class SequenceComponent : MonoBehaviour
     public int bpm = 60;
     public List<SequenceBeat> beats;
     public GameObject ArrowImage;
+    public AudioSource lowBeat;
+    public AudioSource highBeat;
 
     float beatAccumulatedTime = 0.0f;
     float beatTimeS;
-    int beatIndex = 0; 
+    int beatIndex = 0;
+    int lastBeatAudioPlayed = -1;
 
     void OnValidate()
     {
@@ -95,7 +98,6 @@ public class SequenceComponent : MonoBehaviour
             }
         }
     }
-
 
     // Start is called before the first frame update
     void Start()
@@ -119,8 +121,8 @@ public class SequenceComponent : MonoBehaviour
         // Execute first beat!
         if (beats.Count > 0)
         {
-            beats[beatIndex].Play();
-            HighlightCurrentBeat(beatIndex);
+            ProcessBeatAudio();
+            PlayBeat();
         }
     }
 
@@ -129,16 +131,13 @@ public class SequenceComponent : MonoBehaviour
     {
         beatAccumulatedTime += Time.deltaTime;
 
+        ProcessBeatAudio();
+
         if (beatAccumulatedTime >= beatTimeS)
         {
             if (beats.Count > 0)
             {
-                beats[beatIndex].Play();
-
-                HighlightCurrentBeat(beatIndex);
-
-                ++beatIndex;
-                beatIndex %= beats.Count;
+                PlayBeat();
             }
 
             beatAccumulatedTime -= beatTimeS;
@@ -192,5 +191,36 @@ public class SequenceComponent : MonoBehaviour
         // TODO do this prettier
         beats[previousIndex].UI.GetComponent<Image>().color = Color.white;
         beats[beatIndex].UI.GetComponent<Image>().color = Color.yellow;
+    }
+
+    void ProcessBeatAudio()
+    {
+        float beatSectionProgress = beatAccumulatedTime / beatTimeS;
+        int beatSection = (int)Mathf.Floor(beatSectionProgress*4.0f);
+
+        if (beatSection > lastBeatAudioPlayed)
+        {
+            if (beatSection % 4 == 0)
+            {
+                highBeat.Play();
+            }
+            else
+            {
+                lowBeat.Play();
+            }
+
+            lastBeatAudioPlayed = beatSection;
+        }
+    }
+
+    void PlayBeat()
+    {
+        beats[beatIndex].Play();
+        lastBeatAudioPlayed = 0;
+
+        HighlightCurrentBeat(beatIndex);
+
+        ++beatIndex;
+        beatIndex %= beats.Count;
     }
 }
