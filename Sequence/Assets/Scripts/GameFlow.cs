@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameFlow : MonoBehaviour
 {
+    public int lastLevelPlayed = 0;
+
     public enum GameState
     {
         GameStart,
@@ -40,6 +42,8 @@ public class GameFlow : MonoBehaviour
 
     void Start()
     {
+        // TODO move to main menu logic
+        lastLevelPlayed = SaveGame.LoadLastLevelPlayed();
         Time.timeScale = 0;
     }
 
@@ -82,6 +86,9 @@ public class GameFlow : MonoBehaviour
         {
             levelCompletedAudio2.Play();
         }
+
+        // TODO get the level id
+        SaveGame.SaveLevelProgress(9);
 
         yield return new WaitForSecondsRealtime(1.2f);
 
