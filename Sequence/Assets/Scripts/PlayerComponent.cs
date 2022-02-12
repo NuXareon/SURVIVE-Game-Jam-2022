@@ -109,15 +109,11 @@ public class PlayerComponent : MonoBehaviour
             if (!sidewaysHit)
             {
                 if (sidewaysInput < 0.0f && currentSidewaysSpeed > -maxSidewaysSpeed
-                                || sidewaysInput > 0.0f && currentSidewaysSpeed < maxSidewaysSpeed)
+                 || sidewaysInput > 0.0f && currentSidewaysSpeed < maxSidewaysSpeed)
                 {
                     mRigidBody.velocity += right * sidewaysInput * maxSidewaysSpeed;
                 }
             }
-            
-            //mRigidBody.AddForce(right * sidewaysSpeed * sidewaysInput);
-            // Check current speed so we don't accelerate too much
-            //mRigidBody.AddForce(right*sidewaysSpeed*sidewaysInput);
         }
         else
         {
@@ -125,8 +121,6 @@ public class PlayerComponent : MonoBehaviour
             {
                 mRigidBody.velocity -= right * Mathf.Min(maxSidewaysSpeed * 0.2f, currentSidewaysSpeed);
             }
-
-            // move towards 0 speed
         }
     }
 
