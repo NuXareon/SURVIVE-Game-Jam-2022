@@ -595,7 +595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 205562922374203285, guid: 9736728025ff1d84cb010c6360245889, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8852091
+      value: -1.3852091
       objectReference: {fileID: 0}
     - target: {fileID: 205562922374203285, guid: 9736728025ff1d84cb010c6360245889, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1655,8 +1655,16 @@ PrefabInstance:
       value: Orange
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
+      propertyPath: beats.Array.data[0].colorChange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[1].colorChange
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
+      propertyPath: beats.Array.data[2].colorChange
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[3].colorChange
