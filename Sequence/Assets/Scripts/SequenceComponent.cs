@@ -161,12 +161,8 @@ public class SequenceComponent : MonoBehaviour
             ++index;
         }
 
-        // Execute first beat!
-        if (beats.Count > 0)
-        {
-            ProcessBeatAudio();
-            PlayBeat();
-        }
+        // Force first beat to be played on the first update tick
+        beatAccumulatedTime = beatTimeS;
     }
 
     // Update is called once per frame

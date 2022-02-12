@@ -13,6 +13,14 @@ public class Utils : MonoBehaviour
         Green
     }
 
+    public enum Gravity
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
+
     public Color whiteColor;
     public Color blueColor;
     public Color orangeColor;

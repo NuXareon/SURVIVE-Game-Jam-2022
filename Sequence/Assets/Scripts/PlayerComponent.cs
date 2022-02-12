@@ -7,6 +7,7 @@ public class PlayerComponent : MonoBehaviour
     public float maxSidewaysSpeed = 10f;
     public float jumpStrength = 10f;
     public Utils.GameColor color = Utils.GameColor.White;
+    public Utils.Gravity initialGravity = Utils.Gravity.Down;
     public Renderer playerRenderer;
 
     float sidewaysInput = 0.0f;
@@ -23,6 +24,7 @@ public class PlayerComponent : MonoBehaviour
         utils = gameLogic.GetComponent<Utils>();
 
         UpdateRendererColor();
+        ApplyInitialGravity();
     }
 
     private void OnValidate()
@@ -122,4 +124,26 @@ public class PlayerComponent : MonoBehaviour
         propBlock.SetColor("_Color", utils.GetColor(color));
         playerRenderer.SetPropertyBlock(propBlock);
     }
+
+    void ApplyInitialGravity()
+    {
+        float gravityPull = Physics.gravity.magnitude;
+
+        switch (initialGravity)
+        {
+            case Utils.Gravity.Up:
+                Physics.gravity = Vector3.up * gravityPull;
+                break;
+            case Utils.Gravity.Down:
+                Physics.gravity = Vector3.down * gravityPull;
+                break;
+            case Utils.Gravity.Left:
+                Physics.gravity = Vector3.left * gravityPull;
+                break;
+            case Utils.Gravity.Right:
+                Physics.gravity = Vector3.right * gravityPull;
+                break;
+        }
+    }
+
 }
