@@ -14,20 +14,15 @@ public class PlayerComponent : MonoBehaviour
     bool jump = false;
     float gravityPull;
     Rigidbody mRigidBody;
+    Utils utils;
 
     void Start()
     {
         mRigidBody = GetComponent<Rigidbody>();
         GameObject gameLogic = GameObject.FindGameObjectWithTag("GameController");
-        if (gameLogic)
-        {
-            Utils utils = gameLogic.GetComponent<Utils>();
+        utils = gameLogic.GetComponent<Utils>();
 
-            MaterialPropertyBlock propBlock = new MaterialPropertyBlock();
-            playerRenderer.GetPropertyBlock(propBlock);
-            propBlock.SetColor("_Color", utils.GetColor(color));
-            playerRenderer.SetPropertyBlock(propBlock);
-        }
+        UpdateRendererColor();
     }
 
     private void OnValidate()
@@ -35,12 +30,8 @@ public class PlayerComponent : MonoBehaviour
         GameObject gameLogic = GameObject.FindGameObjectWithTag("GameController");
         if (gameLogic)
         {
-            Utils utils = gameLogic.GetComponent<Utils>();
-
-            MaterialPropertyBlock propBlock = new MaterialPropertyBlock();
-            playerRenderer.GetPropertyBlock(propBlock);
-            propBlock.SetColor("_Color", utils.GetColor(color));
-            playerRenderer.SetPropertyBlock(propBlock);
+            utils = gameLogic.GetComponent<Utils>();
+            UpdateRendererColor();
         }
     }
 
@@ -116,6 +107,19 @@ public class PlayerComponent : MonoBehaviour
 
             // move towards 0 speed
         }
+    }
 
+    public void SetColor(Utils.GameColor newColor)
+    {
+        color = newColor;
+        UpdateRendererColor();
+    }
+
+    void UpdateRendererColor()
+    {
+        MaterialPropertyBlock propBlock = new MaterialPropertyBlock();
+        playerRenderer.GetPropertyBlock(propBlock);
+        propBlock.SetColor("_Color", utils.GetColor(color));
+        playerRenderer.SetPropertyBlock(propBlock);
     }
 }

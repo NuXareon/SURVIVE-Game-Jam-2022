@@ -50,6 +50,9 @@ MonoBehaviour:
   bpm: 30
   beats: []
   ArrowImage: {fileID: 4766350005880822968, guid: 51e235c7952535f4fb57782e71021824, type: 3}
+  ArrowHighlightImage: {fileID: 4275229031581129843, guid: ffd37e6920d5fea42a7ad64692ed4373, type: 3}
+  SquareImage: {fileID: 1315309348506578398, guid: f284e252a516a2c41875597cbec03a5a, type: 3}
+  SquareHighlightImage: {fileID: 481133341768294993, guid: 16fe7cff9d25622409c54f434e562cea, type: 3}
   lowBeat: {fileID: -7002119227780071470}
   highBeat: {fileID: 1883150564931412647}
 --- !u!82 &1883150564931412647
@@ -256,11 +259,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0340e728686735a43b9a6f0ee02a4d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteColor: {r: 1, g: 1, b: 1, a: 0}
-  blueColor: {r: 0, g: 0.11277914, b: 1, a: 0}
-  orangeColor: {r: 1, g: 0.28782457, b: 0, a: 0}
-  purpleColor: {r: 0.45948458, g: 0, b: 1, a: 0}
-  greenColor: {r: 0.06937339, g: 0.4056604, b: 0, a: 0}
+  whiteColor: {r: 1, g: 1, b: 1, a: 1}
+  blueColor: {r: 0, g: 0.11277914, b: 1, a: 1}
+  orangeColor: {r: 1, g: 0.28782457, b: 0, a: 1}
+  purpleColor: {r: 0.45948458, g: 0, b: 1, a: 1}
+  greenColor: {r: 0.06937339, g: 0.4056604, b: 0, a: 1}
 --- !u!1 &8151695441967348989
 GameObject:
   m_ObjectHideFlags: 0
