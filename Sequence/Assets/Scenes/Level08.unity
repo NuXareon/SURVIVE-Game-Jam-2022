@@ -1627,6 +1627,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1265014593286756705, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
+      propertyPath: greenColor.b
+      value: 0.16019939
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265014593286756705, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
+      propertyPath: greenColor.g
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265014593286756705, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
+      propertyPath: greenColor.r
+      value: 0.26409563
+      objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981184, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: m_Name
       value: GameLogic
@@ -1637,11 +1649,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981185, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.664685
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981185, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.1095247
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981185, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1697,7 +1709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[3].name
-      value: DownGreen
+      value: Down
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[0].colorChange
@@ -1713,7 +1725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[3].colorChange
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[0].gravityChange

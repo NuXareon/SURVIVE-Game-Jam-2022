@@ -550,10 +550,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whiteColor: {r: 1, g: 1, b: 1, a: 1}
-  blueColor: {r: 0, g: 0.11277914, b: 1, a: 1}
+  blueColor: {r: 0, g: 0.40291214, b: 1, a: 1}
   orangeColor: {r: 1, g: 0.28782457, b: 0, a: 1}
   purpleColor: {r: 0.45948458, g: 0, b: 1, a: 1}
-  greenColor: {r: 0.06937339, g: 0.4056604, b: 0, a: 1}
+  greenColor: {r: 0.26409563, g: 0.754717, b: 0.16019939, a: 1}
 --- !u!114 &1542949575172992984
 MonoBehaviour:
   m_ObjectHideFlags: 0
