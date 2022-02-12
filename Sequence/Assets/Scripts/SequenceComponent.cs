@@ -192,8 +192,16 @@ public class SequenceComponent : MonoBehaviour
         }
         
         // TODO do this prettier
-        beats[previousIndex].UI.GetComponent<Image>().color = Color.white;
-        beats[beatIndex].UI.GetComponent<Image>().color = Color.yellow;
+        if (beats[previousIndex].UI)
+        {
+            beats[previousIndex].UI.GetComponent<Image>().color = Color.white;
+        }
+
+        if (beats[beatIndex].UI)
+        {
+            beats[beatIndex].UI.GetComponent<Image>().color = Color.yellow;
+
+        }
     }
 
     void ProcessBeatAudio()
