@@ -50,6 +50,7 @@ MonoBehaviour:
   bpm: 30
   beats: []
   ArrowImage: {fileID: 4766350005880822968, guid: 51e235c7952535f4fb57782e71021824, type: 3}
+  SquareImage: {fileID: 4162381878909540799, guid: f284e252a516a2c41875597cbec03a5a, type: 3}
   lowBeat: {fileID: -7002119227780071470}
   highBeat: {fileID: 1883150564931412647}
 --- !u!82 &1883150564931412647

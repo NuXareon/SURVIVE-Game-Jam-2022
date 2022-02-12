@@ -31,6 +31,23 @@ public class SequenceBeat
     public GravityChange gravityChange;
     public ColorChange colorChange;
 
+    static public Utils.GameColor ColorChangeToColor(ColorChange colorChange)
+    {
+        switch (colorChange)
+        {
+            case ColorChange.None:
+                return Utils.GameColor.White;
+            case ColorChange.Blue:
+                return Utils.GameColor.Blue;
+            case ColorChange.Orange:
+                return Utils.GameColor.Orange;
+            case ColorChange.Purple:
+                return Utils.GameColor.Purple;
+            case ColorChange.Green:
+                return Utils.GameColor.Green;
+        }
+        return Utils.GameColor.White;
+    }
     public void Play()
     {
         ApplyGravity();
@@ -74,6 +91,7 @@ public class SequenceComponent : MonoBehaviour
     public int bpm = 60;
     public List<SequenceBeat> beats;
     public GameObject ArrowImage;
+    public GameObject SquareImage;
     public AudioSource lowBeat;
     public AudioSource highBeat;
 
@@ -81,6 +99,7 @@ public class SequenceComponent : MonoBehaviour
     float beatTimeS;
     int beatIndex = 0;
     int lastBeatAudioPlayed = -1;
+    Utils utils;
 
     void OnValidate()
     {
@@ -102,6 +121,9 @@ public class SequenceComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject gameLogic = GameObject.FindGameObjectWithTag("GameController");
+        utils = gameLogic.GetComponent<Utils>();
+
         beatTimeS = 60.0f / (float)bpm;
 
         int index = 0;
@@ -114,6 +136,12 @@ public class SequenceComponent : MonoBehaviour
             {
                 beat.UI = RenderArrowUI(index, elementSpacing, elementWidth, initialUIPositionX, beat.gravityChange);
             }
+            else if (beat.colorChange != SequenceBeat.ColorChange.None)
+            {
+                beat.UI = RenderSquareUI(index, elementSpacing, elementWidth, initialUIPositionX);
+            }
+
+            ApplyUIColor(beat.UI, beat.colorChange);
 
             ++index;
         }
@@ -183,6 +211,26 @@ public class SequenceComponent : MonoBehaviour
         return newArrow;
     }
 
+    GameObject RenderSquareUI(int index, float arrowSpacing, float arrowWidth, float initialUIPositionX)
+    {
+        GameObject newSquare = Instantiate(SquareImage, GetComponentInChildren<Canvas>().transform);
+        RectTransform squareTransform = newSquare.GetComponent<RectTransform>();
+
+        Vector2 squarePosition = new Vector2(-initialUIPositionX + ((float)index * (arrowWidth + arrowSpacing)), squareTransform.anchoredPosition.y);
+        squareTransform.anchoredPosition = squarePosition;
+
+        return newSquare;
+    }
+
+    void ApplyUIColor(GameObject UIObject, SequenceBeat.ColorChange color)
+    {
+        if (color != SequenceBeat.ColorChange.None)
+        {
+            Color UIColor = utils.GetColor(SequenceBeat.ColorChangeToColor(color));
+            UIObject.GetComponent<Image>().color = UIColor;
+        }
+    }
+
     void HighlightCurrentBeat(int beatIndex)
     {
         int previousIndex = beatIndex - 1;
@@ -229,7 +277,8 @@ public class SequenceComponent : MonoBehaviour
         beats[beatIndex].Play();
         lastBeatAudioPlayed = 0;
 
-        HighlightCurrentBeat(beatIndex);
+        // TODO fix this
+        //HighlightCurrentBeat(beatIndex);
 
         ++beatIndex;
         beatIndex %= beats.Count;
