@@ -6,19 +6,19 @@ using UnityEngine.SceneManagement;
 public class WallComponent : MonoBehaviour
 {
     public Utils.GameColor color = Utils.GameColor.White;
+
+    GameFlow flow;
     void Start()
     {
         GameObject gameLogic = GameObject.FindGameObjectWithTag("GameController");
-        if (gameLogic)
-        {
-            Utils utils = gameLogic.GetComponent<Utils>();
+        Utils utils = gameLogic.GetComponent<Utils>();
+        flow = gameLogic.GetComponent<GameFlow>();
 
-            MaterialPropertyBlock propBlock = new MaterialPropertyBlock();
-            Renderer renderer = GetComponent<Renderer>();
-            renderer.GetPropertyBlock(propBlock);
-            propBlock.SetColor("_Color", utils.GetColor(color));
-            renderer.SetPropertyBlock(propBlock);
-        }
+        MaterialPropertyBlock propBlock = new MaterialPropertyBlock();
+        Renderer renderer = GetComponent<Renderer>();
+        renderer.GetPropertyBlock(propBlock);
+        propBlock.SetColor("_Color", utils.GetColor(color));
+        renderer.SetPropertyBlock(propBlock);
 
         if (color != Utils.GameColor.White)
         {
@@ -57,9 +57,7 @@ public class WallComponent : MonoBehaviour
         {
             if (player.color != color)
             {
-                // TODO manage death properly
-                Scene scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(scene.name);
+                flow.OnPlayerDeath();
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameFlow : MonoBehaviour
 {
@@ -53,4 +54,38 @@ public class GameFlow : MonoBehaviour
         }
     }
 
+    public void OnLevelCompleted()
+    {
+        gameState = GameState.LevelEnd;
+        Time.timeScale = 0;
+        StartCoroutine(FinishLevel());
+    }
+
+    public void OnPlayerDeath()
+    {
+        gameState = GameState.PlayerDead;
+        Time.timeScale = 0;
+        StartCoroutine(KillPlayer());
+    }
+
+    IEnumerator FinishLevel()
+    {
+        // TODO play OK.
+
+        yield return new WaitForSecondsRealtime(1);
+
+        // TODO Load next level
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
+    IEnumerator KillPlayer()
+    {
+        // TODO play death audio
+
+        yield return new WaitForSecondsRealtime(0.3f);
+
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
 }
