@@ -28,6 +28,7 @@ public class SequenceBeat
     public string name;
     [HideInInspector]
     public GameObject UI;
+    public GameObject UIHighlight;
     public GravityChange gravityChange;
     public ColorChange colorChange;
 
@@ -48,10 +49,10 @@ public class SequenceBeat
         }
         return Utils.GameColor.White;
     }
-    public void Play()
+    public void Play(PlayerComponent playerComponent)
     {
         ApplyGravity();
-        ApplyColor();
+        ApplyColor(playerComponent);
     }
 
     void ApplyGravity()
@@ -79,9 +80,14 @@ public class SequenceBeat
                 break;
         }
     }
-    void ApplyColor()
+    void ApplyColor(PlayerComponent playerComponent)
     {
-        // TODO
+        if (colorChange == ColorChange.None)
+        {
+            return;
+        }
+
+        playerComponent.SetColor(ColorChangeToColor(colorChange));
     }
 }
 
@@ -91,7 +97,9 @@ public class SequenceComponent : MonoBehaviour
     public int bpm = 60;
     public List<SequenceBeat> beats;
     public GameObject ArrowImage;
+    public GameObject ArrowHighlightImage;
     public GameObject SquareImage;
+    public GameObject SquareHighlightImage;
     public AudioSource lowBeat;
     public AudioSource highBeat;
 
@@ -100,6 +108,7 @@ public class SequenceComponent : MonoBehaviour
     int beatIndex = 0;
     int lastBeatAudioPlayed = -1;
     Utils utils;
+    PlayerComponent playerComponent;
 
     void OnValidate()
     {
@@ -124,21 +133,26 @@ public class SequenceComponent : MonoBehaviour
         GameObject gameLogic = GameObject.FindGameObjectWithTag("GameController");
         utils = gameLogic.GetComponent<Utils>();
 
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerComponent = player.GetComponent<PlayerComponent>();
+
         beatTimeS = 60.0f / (float)bpm;
 
         int index = 0;
         const float elementSpacing = 20.0f;
         float elementWidth = ArrowImage.GetComponent<RectTransform>().rect.width;
-        float initialUIPositionX = (beats.Count - 1.0f) * elementWidth / 2.0f + (beats.Count-1.0f) * elementSpacing / 2.0f;
+        float initialUIPositionX = (beats.Count - 1.0f) * elementWidth / 2.0f + (beats.Count - 1.0f) * elementSpacing / 2.0f;
         foreach (SequenceBeat beat in beats)
         {
             if (beat.gravityChange != SequenceBeat.GravityChange.None)
             {
                 beat.UI = RenderArrowUI(index, elementSpacing, elementWidth, initialUIPositionX, beat.gravityChange);
+                beat.UIHighlight = RenderArrowHighlightUI(index, elementSpacing, elementWidth, initialUIPositionX, beat.UI);
             }
             else if (beat.colorChange != SequenceBeat.ColorChange.None)
             {
                 beat.UI = RenderSquareUI(index, elementSpacing, elementWidth, initialUIPositionX);
+                beat.UIHighlight = RenderSquareHighlightUI(index, elementSpacing, elementWidth, initialUIPositionX, beat.UI);
             }
 
             ApplyUIColor(beat.UI, beat.colorChange);
@@ -183,27 +197,30 @@ public class SequenceComponent : MonoBehaviour
         switch (gravityChange)
         {
             case SequenceBeat.GravityChange.Up:
-            {
-                Vector3 rotation = new Vector3(0.0f, 0.0f, 90.0f);
-                arrowTransform.Rotate(rotation);
-                break;
-            }
+                {
+                    Vector3 rotation = new Vector3(0.0f, 0.0f, 90.0f);
+                    arrowTransform.Rotate(rotation);
+                    break;
+                }
             case SequenceBeat.GravityChange.Down:
-            {
-                Vector3 rotation = new Vector3(0.0f, 0.0f, -90.0f);
-                arrowTransform.Rotate(rotation);
-                break;
-            }
+                {
+                    Vector3 rotation = new Vector3(0.0f, 0.0f, -90.0f);
+                    arrowTransform.Rotate(rotation);
+                    break;
+                }
             case SequenceBeat.GravityChange.Left:
-            {
-                Vector3 rotation = new Vector3(0.0f, 0.0f, 180.0f);
-                arrowTransform.Rotate(rotation);
-                break;
-            }
+                {
+                    Vector3 rotation = new Vector3(0.0f, 0.0f, 180.0f);
+                    arrowTransform.Rotate(rotation);
+                    break;
+                }
             case SequenceBeat.GravityChange.Right:
                 // Default orientation
                 break;
         }
+
+        Canvas arrowCanvas = newArrow.GetComponent<Canvas>();
+        arrowCanvas.overrideSorting = true;
 
         Vector2 arrowPosition = new Vector2(-initialUIPositionX + ((float)index * (arrowWidth + arrowSpacing)), arrowTransform.anchoredPosition.y);
         arrowTransform.anchoredPosition = arrowPosition;
@@ -219,10 +236,38 @@ public class SequenceComponent : MonoBehaviour
         Vector2 squarePosition = new Vector2(-initialUIPositionX + ((float)index * (arrowWidth + arrowSpacing)), squareTransform.anchoredPosition.y);
         squareTransform.anchoredPosition = squarePosition;
 
+        Canvas squareCanvas = newSquare.GetComponent<Canvas>();
+        squareCanvas.overrideSorting = true;
+
+
         return newSquare;
     }
 
-    void ApplyUIColor(GameObject UIObject, SequenceBeat.ColorChange color)
+    GameObject RenderSquareHighlightUI(int index, float arrowSpacing, float arrowWidth, float initialUIPositionX, GameObject parentUIElement)
+    {
+        GameObject newSquare = Instantiate(SquareHighlightImage, parentUIElement.transform);
+
+        Canvas squareCanvas = newSquare.GetComponent<Canvas>();
+        squareCanvas.overrideSorting = true;
+
+        newSquare.SetActive(false);
+
+        return newSquare;
+    }
+
+    GameObject RenderArrowHighlightUI(int index, float arrowSpacing, float arrowWidth, float initialUIPositionX, GameObject parentUIElement)
+    {
+        GameObject newArrow = Instantiate(ArrowHighlightImage, parentUIElement.transform);
+
+        Canvas arrowCanvas = newArrow.GetComponent<Canvas>();
+        arrowCanvas.overrideSorting = true;
+
+        newArrow.SetActive(false);
+
+        return newArrow;
+    }
+
+void ApplyUIColor(GameObject UIObject, SequenceBeat.ColorChange color)
     {
         if (color != SequenceBeat.ColorChange.None)
         {
@@ -231,6 +276,7 @@ public class SequenceComponent : MonoBehaviour
         }
     }
 
+    // TODO make highlights pretty
     void HighlightCurrentBeat(int beatIndex)
     {
         int previousIndex = beatIndex - 1;
@@ -242,13 +288,24 @@ public class SequenceComponent : MonoBehaviour
         // TODO do this prettier
         if (beats[previousIndex].UI)
         {
-            beats[previousIndex].UI.GetComponent<Image>().color = Color.white;
+            //beats[previousIndex].UI.GetComponent<Image>().color = Color.white;
         }
 
         if (beats[beatIndex].UI)
         {
-            beats[beatIndex].UI.GetComponent<Image>().color = Color.yellow;
+            //beats[beatIndex].UI.GetComponent<Image>().color = Color.yellow;
+        }
 
+        if (beats[previousIndex].UIHighlight)
+        {
+            beats[previousIndex].UIHighlight.SetActive(false);
+            //beats[previousIndex].UI.GetComponent<Image>().color = Color.white;
+        }
+
+        if (beats[beatIndex].UIHighlight)
+        {
+            beats[beatIndex].UIHighlight.SetActive(true);
+            //beats[beatIndex].UI.GetComponent<Image>().color = Color.yellow;
         }
     }
 
@@ -274,11 +331,10 @@ public class SequenceComponent : MonoBehaviour
 
     void PlayBeat()
     {
-        beats[beatIndex].Play();
+        beats[beatIndex].Play(playerComponent);
         lastBeatAudioPlayed = 0;
 
-        // TODO fix this
-        //HighlightCurrentBeat(beatIndex);
+        HighlightCurrentBeat(beatIndex);
 
         ++beatIndex;
         beatIndex %= beats.Count;
