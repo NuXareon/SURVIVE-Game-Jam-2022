@@ -92,7 +92,6 @@ public class SequenceBeat
     }
 }
 
-
 public class SequenceComponent : MonoBehaviour
 {
     public int bpm = 60;
