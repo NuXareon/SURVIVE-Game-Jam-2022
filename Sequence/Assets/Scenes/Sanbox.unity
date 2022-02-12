@@ -813,19 +813,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[0].name
-      value: Blue
-      objectReference: {fileID: 0}
-    - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
-      propertyPath: beats.Array.data[1].name
       value: Down
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
+      propertyPath: beats.Array.data[1].name
+      value: Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[2].name
-      value: Orange
+      value: Up
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[3].name
@@ -833,7 +833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[0].colorChange
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[1].colorChange
@@ -841,7 +841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[2].colorChange
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[3].colorChange
@@ -849,15 +849,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[0].gravityChange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
-      propertyPath: beats.Array.data[1].gravityChange
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
+      propertyPath: beats.Array.data[1].gravityChange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[2].gravityChange
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[3].gravityChange

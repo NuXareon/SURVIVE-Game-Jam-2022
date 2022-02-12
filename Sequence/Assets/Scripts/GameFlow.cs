@@ -13,8 +13,9 @@ public class GameFlow : MonoBehaviour
         LevelEnd
     }
 
+    [HideInInspector]
     public GameState gameState = GameState.GameStart;
-
+    public AudioSource levelCompletedAudio;
     public bool IsGamePaused()
     {
         if (gameState == GameState.GameStart)
@@ -70,9 +71,9 @@ public class GameFlow : MonoBehaviour
 
     IEnumerator FinishLevel()
     {
-        // TODO play OK.
+        levelCompletedAudio.Play();
 
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(1.2f);
 
         // TODO Load next level
         Scene scene = SceneManager.GetActiveScene();
