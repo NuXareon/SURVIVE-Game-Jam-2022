@@ -7,7 +7,7 @@ public class PlayerComponent : MonoBehaviour
     public float maxSidewaysSpeed = 10f;
     public float jumpStrength = 10f;
     public Utils.GameColor color = Utils.GameColor.White;
-    public Material playerMaterial;
+    public Renderer playerRenderer;
 
     float sidewaysInput = 0.0f;
     bool mIsGrounded = true;    // TODO change
@@ -19,8 +19,29 @@ public class PlayerComponent : MonoBehaviour
     {
         mRigidBody = GetComponent<Rigidbody>();
         GameObject gameLogic = GameObject.FindGameObjectWithTag("GameController");
-        Utils utils = gameLogic.GetComponent<Utils>();
-        playerMaterial.color = utils.GetColor(color);
+        if (gameLogic)
+        {
+            Utils utils = gameLogic.GetComponent<Utils>();
+
+            MaterialPropertyBlock propBlock = new MaterialPropertyBlock();
+            playerRenderer.GetPropertyBlock(propBlock);
+            propBlock.SetColor("_Color", utils.GetColor(color));
+            playerRenderer.SetPropertyBlock(propBlock);
+        }
+    }
+
+    private void OnValidate()
+    {
+        GameObject gameLogic = GameObject.FindGameObjectWithTag("GameController");
+        if (gameLogic)
+        {
+            Utils utils = gameLogic.GetComponent<Utils>();
+
+            MaterialPropertyBlock propBlock = new MaterialPropertyBlock();
+            playerRenderer.GetPropertyBlock(propBlock);
+            propBlock.SetColor("_Color", utils.GetColor(color));
+            playerRenderer.SetPropertyBlock(propBlock);
+        }
     }
 
     // Update is called once per frame

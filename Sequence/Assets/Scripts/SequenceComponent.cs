@@ -131,7 +131,10 @@ public class SequenceComponent : MonoBehaviour
     {
         beatAccumulatedTime += Time.deltaTime;
 
-        ProcessBeatAudio();
+        if (beats.Count > 1)
+        {
+            ProcessBeatAudio();
+        }
 
         if (beatAccumulatedTime >= beatTimeS)
         {
