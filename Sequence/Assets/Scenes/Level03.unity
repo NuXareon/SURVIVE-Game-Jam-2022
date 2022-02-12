@@ -1051,11 +1051,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[0].name
-      value: Down
+      value: DownBlue
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[1].name
-      value: Up
+      value: UpBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
+      propertyPath: beats.Array.data[0].colorChange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
+      propertyPath: beats.Array.data[1].colorChange
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[0].gravityChange
