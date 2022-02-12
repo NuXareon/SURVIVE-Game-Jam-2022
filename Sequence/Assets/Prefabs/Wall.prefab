@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2585407501540411720}
   - component: {fileID: 2585407501540411727}
   - component: {fileID: 411635960664085274}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,3 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd325bb26bee5745bf36dbf2db72c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: 0

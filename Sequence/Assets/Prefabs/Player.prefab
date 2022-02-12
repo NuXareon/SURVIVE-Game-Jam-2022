@@ -111,8 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSidewaysSpeed: 7
-  jumpStrength: 15
+  jumpStrength: 11
   color: 0
+  initialGravity: 1
   playerRenderer: {fileID: 4746647161526115813}
 --- !u!54 &6539765620367060265
 Rigidbody:

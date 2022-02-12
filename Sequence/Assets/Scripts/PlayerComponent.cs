@@ -37,7 +37,6 @@ public class PlayerComponent : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Vector3.Dot(Physics.gravity.normalized, Vector3.up) == 0.0f)
@@ -49,12 +48,13 @@ public class PlayerComponent : MonoBehaviour
             sidewaysInput = -Input.GetAxis("Horizontal");
         }
 
+        Vector3 groundDirection = Physics.gravity.normalized;
+        int layerMask = 1 << 3;
+        mIsGrounded = Physics.Raycast(transform.position, groundDirection, transform.localScale.x + 0.1f, layerMask);
 
         if (Input.GetButtonDown("Jump") && mIsGrounded)
         {
             jump = true;
-            //mRigidBody.AddForce(-groundDirection * jumpStrength, ForceMode.VelocityChange);
-            // Jump
         }
         else if (Input.GetButtonUp("Jump"))
         {
