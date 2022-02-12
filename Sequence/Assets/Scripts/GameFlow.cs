@@ -87,14 +87,13 @@ public class GameFlow : MonoBehaviour
             levelCompletedAudio2.Play();
         }
 
-        // TODO get the level id
-        SaveGame.SaveLevelProgress(9);
+        Scene scene = SceneManager.GetActiveScene();
+        int nextSceneIndex = scene.buildIndex + 1;
+        SaveGame.SaveLevelProgress(nextSceneIndex);
 
         yield return new WaitForSecondsRealtime(1.2f);
 
-        // TODO Load next level
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     IEnumerator KillPlayer()
