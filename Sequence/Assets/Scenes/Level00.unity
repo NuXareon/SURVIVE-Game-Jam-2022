@@ -387,11 +387,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[0].name
-      value: DownBlue
+      value: Down
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[0].colorChange
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7015771670745981186, guid: d9fb599a89e7bfe40af408101797d747, type: 3}
       propertyPath: beats.Array.data[0].gravityChange
@@ -1080,6 +1080,10 @@ PrefabInstance:
     - target: {fileID: 2670557550172230709, guid: ebd82c985b51e294fbef8e12607aca15, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220476326891574641, guid: ebd82c985b51e294fbef8e12607aca15, type: 3}
+      propertyPath: color
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5220476326891574641, guid: ebd82c985b51e294fbef8e12607aca15, type: 3}
       propertyPath: jumpStrength
