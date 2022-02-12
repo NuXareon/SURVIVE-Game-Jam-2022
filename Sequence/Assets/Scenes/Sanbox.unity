@@ -616,6 +616,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5220476326891574641, guid: ebd82c985b51e294fbef8e12607aca15, type: 3}
+      propertyPath: color
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220476326891574641, guid: ebd82c985b51e294fbef8e12607aca15, type: 3}
       propertyPath: sidewaysSpeed
       value: 10
       objectReference: {fileID: 0}

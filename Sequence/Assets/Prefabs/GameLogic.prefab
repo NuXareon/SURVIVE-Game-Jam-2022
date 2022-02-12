@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7015771670745981186}
   - component: {fileID: 1883150564931412647}
   - component: {fileID: -7002119227780071470}
+  - component: {fileID: 1265014593286756705}
   m_Layer: 0
   m_Name: GameLogic
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,6 +244,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1265014593286756705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015771670745981184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0340e728686735a43b9a6f0ee02a4d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteColor: {r: 1, g: 1, b: 1, a: 0}
+  blueColor: {r: 0, g: 0.11277914, b: 1, a: 0}
+  orangeColor: {r: 1, g: 0.28782457, b: 0, a: 0}
+  purpleColor: {r: 0.45948458, g: 0, b: 1, a: 0}
+  greenColor: {r: 0.06937339, g: 0.4056604, b: 0, a: 0}
 --- !u!1 &8151695441967348989
 GameObject:
   m_ObjectHideFlags: 0

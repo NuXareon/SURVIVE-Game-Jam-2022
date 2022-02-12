@@ -6,8 +6,8 @@ public class PlayerComponent : MonoBehaviour
 {
     public float maxSidewaysSpeed = 10f;
     public float jumpStrength = 10f;
-    //public float gravityScale = 1.5f;
-    //public Camera mainCamera;
+    public Utils.GameColor color = Utils.GameColor.White;
+    public Material playerMaterial;
 
     float sidewaysInput = 0.0f;
     bool mIsGrounded = true;    // TODO change
@@ -18,6 +18,9 @@ public class PlayerComponent : MonoBehaviour
     void Start()
     {
         mRigidBody = GetComponent<Rigidbody>();
+        GameObject gameLogic = GameObject.FindGameObjectWithTag("GameController");
+        Utils utils = gameLogic.GetComponent<Utils>();
+        playerMaterial.color = utils.GetColor(color);
     }
 
     // Update is called once per frame
