@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1883150564931412647}
   - component: {fileID: -7002119227780071470}
   - component: {fileID: 1265014593286756705}
+  - component: {fileID: 1542949575172992984}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: GameController
@@ -162,7 +163,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d2481928c77a1f642bdf6bab3eead08a, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -264,6 +265,19 @@ MonoBehaviour:
   orangeColor: {r: 1, g: 0.28782457, b: 0, a: 1}
   purpleColor: {r: 0.45948458, g: 0, b: 1, a: 1}
   greenColor: {r: 0.06937339, g: 0.4056604, b: 0, a: 1}
+--- !u!114 &1542949575172992984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015771670745981184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d1c368d62baaa4bbd967c4ab07bfd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: 0
 --- !u!1 &8151695441967348989
 GameObject:
   m_ObjectHideFlags: 0

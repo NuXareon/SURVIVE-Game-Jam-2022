@@ -110,6 +110,7 @@ public class SequenceComponent : MonoBehaviour
     int lastBeatAudioPlayed = -1;
     Utils utils;
     PlayerComponent playerComponent;
+    GameFlow flow;
 
     void OnValidate()
     {
@@ -133,6 +134,7 @@ public class SequenceComponent : MonoBehaviour
     {
         GameObject gameLogic = GameObject.FindGameObjectWithTag("GameController");
         utils = gameLogic.GetComponent<Utils>();
+        flow = gameLogic.GetComponent<GameFlow>();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerComponent = player.GetComponent<PlayerComponent>();
@@ -168,6 +170,11 @@ public class SequenceComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (flow.IsGamePaused())
+        {
+            return;
+        }
+
         beatAccumulatedTime += Time.deltaTime;
 
         if (beats.Count > 1)
