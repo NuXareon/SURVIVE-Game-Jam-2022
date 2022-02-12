@@ -15,7 +15,9 @@ public class GameFlow : MonoBehaviour
 
     [HideInInspector]
     public GameState gameState = GameState.GameStart;
-    public AudioSource levelCompletedAudio;
+    public AudioSource levelCompletedAudio1;
+    public AudioSource levelCompletedAudio2;
+
     public bool IsGamePaused()
     {
         if (gameState == GameState.GameStart)
@@ -71,7 +73,15 @@ public class GameFlow : MonoBehaviour
 
     IEnumerator FinishLevel()
     {
-        levelCompletedAudio.Play();
+        int audioClip = Random.Range(0, 2);
+        if (audioClip == 0)
+        {
+            levelCompletedAudio1.Play();
+        }
+        else
+        {
+            levelCompletedAudio2.Play();
+        }
 
         yield return new WaitForSecondsRealtime(1.2f);
 
