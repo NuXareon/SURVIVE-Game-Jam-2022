@@ -25,6 +25,10 @@ public class GoalComponent : MonoBehaviour
             if (!wasGameEnding)
             {
                 playerLastVelocity = playerRigidBody.velocity;
+
+                int KChildIndex = Random.Range(0, transform.childCount);
+                transform.GetChild(KChildIndex).gameObject.SetActive(true);
+
                 wasGameEnding = true;
             }
 
