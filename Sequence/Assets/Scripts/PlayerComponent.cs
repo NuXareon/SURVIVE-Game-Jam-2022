@@ -89,13 +89,32 @@ public class PlayerComponent : MonoBehaviour
         float currentSidewaysSpeed = mRigidBody.velocity.x * right.x + mRigidBody.velocity.y * right.y;
         if (sidewaysInput != 0.0f)
         {
+            int layerMask = 1 << 3;
+            RaycastHit hitInfo;
+            bool sidewaysHit = Physics.Raycast(transform.position, (right * sidewaysInput).normalized, out hitInfo, transform.localScale.x + 0.01f, layerMask);
             
-            // TODO check for sideways collisions
-            if (sidewaysInput < 0.0f && currentSidewaysSpeed > -maxSidewaysSpeed
-                || sidewaysInput > 0.0f && currentSidewaysSpeed < maxSidewaysSpeed)
+            if (sidewaysHit)
             {
-                mRigidBody.velocity += right * sidewaysInput * maxSidewaysSpeed;
+                // Exclude walls with the same color
+                WallComponent wall = hitInfo.transform.gameObject.GetComponent<WallComponent>();
+                if (wall)
+                {
+                    if (wall.color == color)
+                    {
+                        sidewaysHit = false;
+                    }
+                }
             }
+
+            if (!sidewaysHit)
+            {
+                if (sidewaysInput < 0.0f && currentSidewaysSpeed > -maxSidewaysSpeed
+                                || sidewaysInput > 0.0f && currentSidewaysSpeed < maxSidewaysSpeed)
+                {
+                    mRigidBody.velocity += right * sidewaysInput * maxSidewaysSpeed;
+                }
+            }
+            
             //mRigidBody.AddForce(right * sidewaysSpeed * sidewaysInput);
             // Check current speed so we don't accelerate too much
             //mRigidBody.AddForce(right*sidewaysSpeed*sidewaysInput);
