@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSidewaysSpeed: 7
+  maxVerticalSpeed: 20
   jumpStrength: 11
   color: 0
   initialGravity: 1

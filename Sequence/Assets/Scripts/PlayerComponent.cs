@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerComponent : MonoBehaviour
 {
     public float maxSidewaysSpeed = 10f;
+    public float maxVerticalSpeed = 10f;
     public float jumpStrength = 10f;
     public Utils.GameColor color = Utils.GameColor.White;
     public Utils.Gravity initialGravity = Utils.Gravity.Down;
@@ -121,6 +122,12 @@ public class PlayerComponent : MonoBehaviour
             {
                 mRigidBody.velocity -= right * Mathf.Min(maxSidewaysSpeed * 0.2f, currentSidewaysSpeed);
             }
+        }
+
+        float currentVerticalSpeed = mRigidBody.velocity.x * -groundDirection.x + mRigidBody.velocity.y * -groundDirection.y;
+        if (Mathf.Abs(currentVerticalSpeed) > maxVerticalSpeed)
+        {
+            mRigidBody.velocity -= groundDirection * (Mathf.Abs(currentVerticalSpeed) - maxVerticalSpeed);
         }
     }
 
