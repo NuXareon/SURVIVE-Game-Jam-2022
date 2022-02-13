@@ -11,6 +11,7 @@ public class GameFlow : MonoBehaviour
     {
         GameStart,
         GamePlaying,
+        GamePaused,
         PlayerDead,
         LevelEnd
     }
@@ -37,6 +38,11 @@ public class GameFlow : MonoBehaviour
             return true;
         }
 
+        if (gameState == GameState.GamePaused)
+        {
+            return true;
+        }
+
         return false;
     }
 
@@ -56,6 +62,11 @@ public class GameFlow : MonoBehaviour
                 Time.timeScale = 1;
                 gameState = GameState.GamePlaying;
             }
+        }
+
+        if (Input.GetButtonDown("Pause"))
+        {
+            Debug.Log("pause pressed");
         }
     }
 
