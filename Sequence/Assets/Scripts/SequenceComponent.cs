@@ -102,6 +102,7 @@ public class SequenceComponent : MonoBehaviour
     public GameObject SquareHighlightImage;
     public AudioSource lowBeat;
     public AudioSource highBeat;
+    public Canvas SequenceCanvas;
 
     float beatAccumulatedTime = 0.0f;
     float beatTimeS;
@@ -198,7 +199,7 @@ public class SequenceComponent : MonoBehaviour
 
     GameObject RenderArrowUI(int index, float arrowSpacing, float arrowWidth, float initialUIPositionX, SequenceBeat.GravityChange gravityChange)
     {
-        GameObject newArrow = Instantiate(ArrowImage, GetComponentInChildren<Canvas>().transform);
+        GameObject newArrow = Instantiate(ArrowImage, SequenceCanvas.transform);
         RectTransform arrowTransform = newArrow.GetComponent<RectTransform>();
 
         switch (gravityChange)
@@ -237,7 +238,7 @@ public class SequenceComponent : MonoBehaviour
 
     GameObject RenderSquareUI(int index, float arrowSpacing, float arrowWidth, float initialUIPositionX)
     {
-        GameObject newSquare = Instantiate(SquareImage, GetComponentInChildren<Canvas>().transform);
+        GameObject newSquare = Instantiate(SquareImage, SequenceCanvas.transform);
         RectTransform squareTransform = newSquare.GetComponent<RectTransform>();
 
         Vector2 squarePosition = new Vector2(-initialUIPositionX + ((float)index * (arrowWidth + arrowSpacing)), squareTransform.anchoredPosition.y);

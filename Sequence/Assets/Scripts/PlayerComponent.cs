@@ -16,7 +16,7 @@ public class PlayerComponent : MonoBehaviour
     public GameObject meshObject;
 
     float sidewaysInput = 0.0f;
-    bool mIsGrounded = true;    // TODO change
+    bool mIsGrounded = true;
     bool jump = false;
     float gravityPull;
     Rigidbody mRigidBody;

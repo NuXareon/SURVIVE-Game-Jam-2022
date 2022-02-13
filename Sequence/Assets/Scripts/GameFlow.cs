@@ -11,6 +11,7 @@ public class GameFlow : MonoBehaviour
     {
         GameStart,
         GamePlaying,
+        GamePaused,
         PlayerDead,
         LevelEnd
     }
@@ -19,6 +20,7 @@ public class GameFlow : MonoBehaviour
     public GameState gameState = GameState.GameStart;
     public AudioSource levelCompletedAudio1;
     public AudioSource levelCompletedAudio2;
+    public GameObject pauseMenu;
 
     public bool IsGamePaused()
     {
@@ -33,6 +35,11 @@ public class GameFlow : MonoBehaviour
         }
 
         if (gameState == GameState.PlayerDead)
+        {
+            return true;
+        }
+
+        if (gameState == GameState.GamePaused)
         {
             return true;
         }
@@ -55,6 +62,22 @@ public class GameFlow : MonoBehaviour
             {
                 Time.timeScale = 1;
                 gameState = GameState.GamePlaying;
+            }
+        }
+
+        if (Input.GetButtonDown("Pause"))
+        {
+            if (gameState == GameState.GamePaused)
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1;
+                gameState = GameState.GamePlaying;
+            }
+            else if (gameState == GameState.GamePlaying)
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+                gameState = GameState.GamePaused;
             }
         }
     }
@@ -93,6 +116,11 @@ public class GameFlow : MonoBehaviour
         gameState = GameState.LevelEnd;
         Time.timeScale = 0;
         StartCoroutine(GoToMainMenu(true));
+    }
+
+    public void OnMenuBackToMain()
+    {
+        StartCoroutine(GoToMainMenu(false));
     }
 
     IEnumerator FinishLevel()
