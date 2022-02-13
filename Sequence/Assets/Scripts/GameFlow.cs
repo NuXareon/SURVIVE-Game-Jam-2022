@@ -86,17 +86,21 @@ public class GameFlow : MonoBehaviour
 
         if (Input.GetButtonDown("Pause"))
         {
-            if (gameState == GameState.GamePaused)
+            // No pause on main menu
+            if (SceneManager.GetActiveScene().buildIndex != 0)
             {
-                pauseMenu.SetActive(false);
-                Time.timeScale = 1;
-                gameState = GameState.GamePlaying;
-            }
-            else if (gameState == GameState.GamePlaying)
-            {
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0;
-                gameState = GameState.GamePaused;
+                if (gameState == GameState.GamePaused)
+                {
+                    pauseMenu.SetActive(false);
+                    Time.timeScale = 1;
+                    gameState = GameState.GamePlaying;
+                }
+                else if (gameState == GameState.GamePlaying)
+                {
+                    pauseMenu.SetActive(true);
+                    Time.timeScale = 0;
+                    gameState = GameState.GamePaused;
+                }
             }
         }
     }
