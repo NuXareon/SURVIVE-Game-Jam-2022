@@ -9,9 +9,9 @@ OK. is a rhythm puzzle 2D platformer with constant rule changes!
 
 This game features navigation through a 2D space with the change of gravity and color. In this abstract and challenging experience you will have a nice mixture of reacting and strategy planning. Play now and see if you are OK.
 
-Submission for the Survive Game jam.
-Theme: Rules change as you play.
+Submission for the Survive Game jam.  
+Theme: Rules change as you play.  
 Music:Erik Satie - Gymnopedie No.1
 
-Code/GameDesign: Albert Millas Roura
+Code/GameDesign: Albert Millas Roura  
 LevelDesign: Lara Rogonja
