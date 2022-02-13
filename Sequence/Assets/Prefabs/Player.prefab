@@ -115,7 +115,11 @@ MonoBehaviour:
   jumpStrength: 12
   color: 0
   initialGravity: 1
+  onSubBeatScale: 0.85
+  onMainBeatScale: 1.2
+  onBeatAnimationSpeed: 20
   playerRenderer: {fileID: 4746647161526115813}
+  meshObject: {fileID: 3990380193714133975}
 --- !u!54 &6539765620367060265
 Rigidbody:
   m_ObjectHideFlags: 0

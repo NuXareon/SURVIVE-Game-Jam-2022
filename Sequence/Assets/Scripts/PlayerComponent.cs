@@ -9,7 +9,11 @@ public class PlayerComponent : MonoBehaviour
     public float jumpStrength = 10f;
     public Utils.GameColor color = Utils.GameColor.White;
     public Utils.Gravity initialGravity = Utils.Gravity.Down;
+    public float onSubBeatScale = 0.9f;
+    public float onMainBeatScale = 1.1f;
+    public float onBeatAnimationSpeed = 5.0f;
     public Renderer playerRenderer;
+    public GameObject meshObject;
 
     float sidewaysInput = 0.0f;
     bool mIsGrounded = true;    // TODO change
@@ -17,6 +21,8 @@ public class PlayerComponent : MonoBehaviour
     float gravityPull;
     Rigidbody mRigidBody;
     Utils utils;
+    float animationProgress = 0.0f;
+    bool animationStart = true;
 
     void Start()
     {
@@ -166,4 +172,50 @@ public class PlayerComponent : MonoBehaviour
         }
     }
 
+    public void OnAudioBeat(bool isMainBeat)
+    {
+        StartCoroutine(AudioBeatAnimation(isMainBeat));
+    }
+
+    IEnumerator AudioBeatAnimation(bool isMainBeat)
+    {
+        bool animationDone = false;
+
+        while (!animationDone)
+        {
+            if (animationStart)
+            {
+                animationProgress += onBeatAnimationSpeed * Time.deltaTime;
+                if (animationProgress > 1.0f)
+                {
+                    animationProgress = 1.0f;
+                    animationStart = false;
+                }
+            }
+            else
+            {
+                animationProgress -= onBeatAnimationSpeed * Time.deltaTime;
+                if (animationProgress < 0.0f)
+                {
+                    animationProgress = 0.0f;
+                    animationStart = true;
+                    animationDone = true;
+                }
+            }
+
+            float multiplier;
+            if (isMainBeat)
+            {
+                multiplier = onMainBeatScale;
+            }
+            else
+            {
+                multiplier = onSubBeatScale;
+            }
+
+            meshObject.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * multiplier, animationProgress);
+
+            yield return null;
+        }
+    }
 }

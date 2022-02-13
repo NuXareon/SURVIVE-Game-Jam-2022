@@ -328,6 +328,8 @@ void ApplyUIColor(GameObject UIObject, SequenceBeat.ColorChange color)
                 lowBeat.Play();
             }
 
+            playerComponent.OnAudioBeat(beatSection % 4 == 0);
+
             lastBeatAudioPlayed = beatSection;
         }
     }
