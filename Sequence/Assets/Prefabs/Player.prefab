@@ -110,9 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d12b999461fa1a46872c6991a50d07a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSidewaysSpeed: 7
+  maxSidewaysSpeed: 5.5
   maxVerticalSpeed: 20
-  jumpStrength: 11
+  jumpStrength: 12
   color: 0
   initialGravity: 1
   playerRenderer: {fileID: 4746647161526115813}
