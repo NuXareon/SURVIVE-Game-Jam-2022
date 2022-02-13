@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSidewaysSpeed: 7
+  maxVerticalSpeed: 20
   jumpStrength: 11
   color: 0
   initialGravity: 1
@@ -130,7 +131,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &3990380193714133975
 GameObject:
   m_ObjectHideFlags: 0
