@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class GoalComponent : MonoBehaviour
 {
-    GameFlow flow;
+    protected GameFlow flow;
     GameObject playerObject;
     Vector3 playerLastVelocity;
     bool wasGameEnding = false;
+    bool triggeredGameEnding = false;
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class GoalComponent : MonoBehaviour
         if (flow.gameState == GameFlow.GameState.LevelEnd)
         {
             Rigidbody playerRigidBody = playerObject.GetComponent<Rigidbody>();
-            if (!wasGameEnding)
+            if (!wasGameEnding && triggeredGameEnding)
             {
                 playerLastVelocity = playerRigidBody.velocity;
 
@@ -32,9 +33,6 @@ public class GoalComponent : MonoBehaviour
                 wasGameEnding = true;
             }
 
-
-            //playerObject.transform.Translate(playerLastVelocity * Time.unscaledDeltaTime);
-
             Vector3 direction = transform.position - playerObject.transform.position;
 
             if (direction.sqrMagnitude > 0.01f)
@@ -42,6 +40,7 @@ public class GoalComponent : MonoBehaviour
                 // I'm sure all of this is wrong, but it works sooo...
                 
                 float gravityForce = (100.0f / direction.sqrMagnitude);
+                gravityForce = Mathf.Min(gravityForce, 100.0f);
 
                 playerLastVelocity += direction.normalized * gravityForce * Time.unscaledDeltaTime;
 
@@ -61,7 +60,13 @@ public class GoalComponent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            flow.OnLevelCompleted();
+            TriggerGoal();
+            triggeredGameEnding = true;
         }
+    }
+
+    virtual protected void TriggerGoal()
+    {
+        flow.OnLevelCompleted();
     }
 }

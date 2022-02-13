@@ -42,8 +42,6 @@ public class GameFlow : MonoBehaviour
 
     void Start()
     {
-        // TODO move to main menu logic
-        lastLevelPlayed = SaveGame.LoadLastLevelPlayed();
         Time.timeScale = 0;
     }
 
@@ -73,6 +71,14 @@ public class GameFlow : MonoBehaviour
         gameState = GameState.PlayerDead;
         Time.timeScale = 0;
         StartCoroutine(KillPlayer());
+    }
+
+    public void OnContinueGame()
+    {
+        gameState = GameState.LevelEnd;
+        Time.timeScale = 0;
+        lastLevelPlayed = SaveGame.LoadLastLevelPlayed();
+        StartCoroutine(LoadLevel(lastLevelPlayed));
     }
 
     IEnumerator FinishLevel()
@@ -105,4 +111,22 @@ public class GameFlow : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        int audioClip = Random.Range(0, 2);
+        if (audioClip == 0)
+        {
+            levelCompletedAudio1.Play();
+        }
+        else
+        {
+            levelCompletedAudio2.Play();
+        }
+
+        yield return new WaitForSecondsRealtime(1.2f);
+
+        SceneManager.LoadScene(levelIndex);
+    }
+
 }
