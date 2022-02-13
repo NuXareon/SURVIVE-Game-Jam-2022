@@ -389,6 +389,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccae5670ae8969541a0e493cc2981628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onSubBeatScale: 0.9
+  onMainBeatScale: 1.15
+  onBeatAnimationSpeed: 20
 --- !u!1 &9100269835940486649
 GameObject:
   m_ObjectHideFlags: 0

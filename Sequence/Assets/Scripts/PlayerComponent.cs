@@ -9,9 +9,9 @@ public class PlayerComponent : MonoBehaviour
     public float jumpStrength = 10f;
     public Utils.GameColor color = Utils.GameColor.White;
     public Utils.Gravity initialGravity = Utils.Gravity.Down;
-    public float onSubBeatScale = 0.9f;
-    public float onMainBeatScale = 1.1f;
-    public float onBeatAnimationSpeed = 5.0f;
+    public float onSubBeatScale = 0.85f;
+    public float onMainBeatScale = 1.2f;
+    public float onBeatAnimationSpeed = 20.0f;
     public Renderer playerRenderer;
     public GameObject meshObject;
 
@@ -180,6 +180,7 @@ public class PlayerComponent : MonoBehaviour
     IEnumerator AudioBeatAnimation(bool isMainBeat)
     {
         bool animationDone = false;
+        Vector3 previousScale = transform.localScale;
 
         while (!animationDone)
         {
@@ -213,7 +214,7 @@ public class PlayerComponent : MonoBehaviour
                 multiplier = onSubBeatScale;
             }
 
-            meshObject.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * multiplier, animationProgress);
+            meshObject.transform.localScale = Vector3.Lerp(previousScale, previousScale * multiplier, animationProgress);
 
             yield return null;
         }

@@ -109,6 +109,7 @@ public class SequenceComponent : MonoBehaviour
     int lastBeatAudioPlayed = -1;
     Utils utils;
     PlayerComponent playerComponent;
+    GoalComponent goalComponent;
     GameFlow flow;
 
     void OnValidate()
@@ -137,6 +138,9 @@ public class SequenceComponent : MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerComponent = player.GetComponent<PlayerComponent>();
+
+        GameObject goal = GameObject.FindGameObjectWithTag("Finish");
+        goalComponent = goal.GetComponent<GoalComponent>();
 
         beatTimeS = 60.0f / (float)bpm;
 
@@ -329,6 +333,7 @@ void ApplyUIColor(GameObject UIObject, SequenceBeat.ColorChange color)
             }
 
             playerComponent.OnAudioBeat(beatSection % 4 == 0);
+            goalComponent.OnAudioBeat(beatSection % 4 == 0);
 
             lastBeatAudioPlayed = beatSection;
         }
