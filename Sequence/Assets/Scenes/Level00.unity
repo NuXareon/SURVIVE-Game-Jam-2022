@@ -610,7 +610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243844694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1084,6 +1084,14 @@ PrefabInstance:
     - target: {fileID: 5220476326891574641, guid: ebd82c985b51e294fbef8e12607aca15, type: 3}
       propertyPath: color
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220476326891574641, guid: ebd82c985b51e294fbef8e12607aca15, type: 3}
+      propertyPath: jumpStrength
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220476326891574641, guid: ebd82c985b51e294fbef8e12607aca15, type: 3}
+      propertyPath: maxSidewaysSpeed
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebd82c985b51e294fbef8e12607aca15, type: 3}
