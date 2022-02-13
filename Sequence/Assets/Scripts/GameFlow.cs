@@ -21,6 +21,7 @@ public class GameFlow : MonoBehaviour
     public AudioSource levelCompletedAudio1;
     public AudioSource levelCompletedAudio2;
     public GameObject pauseMenu;
+    public MusicManager musicManager;
 
     public bool IsGamePaused()
     {
@@ -49,6 +50,16 @@ public class GameFlow : MonoBehaviour
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            GameObject musicManagerObj = GameObject.FindGameObjectWithTag("Music");
+            if (musicManagerObj)
+            {
+                musicManager = musicManagerObj.GetComponent<MusicManager>();
+                musicManager.StopMusic();
+            }
+        }
+
         Time.timeScale = 0;
     }
 
@@ -62,6 +73,14 @@ public class GameFlow : MonoBehaviour
             {
                 Time.timeScale = 1;
                 gameState = GameState.GamePlaying;
+
+                if (SceneManager.GetActiveScene().buildIndex == 0)
+                {
+                    if (musicManager)
+                    {
+                        musicManager.StartMusic();
+                    }
+                }
             }
         }
 
