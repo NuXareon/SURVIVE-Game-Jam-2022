@@ -81,6 +81,13 @@ public class GameFlow : MonoBehaviour
         StartCoroutine(LoadLevel(lastLevelPlayed));
     }
 
+    public void OnExitGame()
+    {
+        gameState = GameState.LevelEnd;
+        Time.timeScale = 0;
+        StartCoroutine(ExitGame());
+    }
+
     IEnumerator FinishLevel()
     {
         int audioClip = Random.Range(0, 2);
@@ -126,7 +133,30 @@ public class GameFlow : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1.2f);
 
-        SceneManager.LoadScene(levelIndex);
+        if (SceneManager.sceneCountInBuildSettings > levelIndex)
+        {
+            SceneManager.LoadScene(levelIndex);
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 
+    IEnumerator ExitGame()
+    {
+        int audioClip = Random.Range(0, 2);
+        if (audioClip == 0)
+        {
+            levelCompletedAudio1.Play();
+        }
+        else
+        {
+            levelCompletedAudio2.Play();
+        }
+
+        yield return new WaitForSecondsRealtime(1.2f);
+
+        Application.Quit();
+    }
 }
