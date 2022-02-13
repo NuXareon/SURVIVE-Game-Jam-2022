@@ -60,6 +60,9 @@ public class GameFlow : MonoBehaviour
             }
         }
 
+
+        // HACK Stop gravity since unity seems to sometimes process the gravity at the start of the game even with timescale == 0
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().useGravity = false;
         Time.timeScale = 0;
     }
 
@@ -71,6 +74,8 @@ public class GameFlow : MonoBehaviour
              || Input.GetAxisRaw("Horizontal") != 0.0f
              || Input.GetAxisRaw("Vertical") != 0.0f)
             {
+                // HACK re-enable gravity when game starts
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().useGravity = true;
                 Time.timeScale = 1;
                 gameState = GameState.GamePlaying;
 
