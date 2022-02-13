@@ -18,7 +18,6 @@ public class PlayerComponent : MonoBehaviour
     float sidewaysInput = 0.0f;
     bool mIsGrounded = true;
     bool jump = false;
-    float gravityPull;
     Rigidbody mRigidBody;
     Utils utils;
     float animationProgress = 0.0f;
