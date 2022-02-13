@@ -23,6 +23,8 @@ public class GameFlow : MonoBehaviour
     public GameObject pauseMenu;
     public MusicManager musicManager;
 
+    GameState gameStateBeforePause;
+
     public bool IsGamePaused()
     {
         if (gameState == GameState.GameStart)
@@ -97,11 +99,16 @@ public class GameFlow : MonoBehaviour
                 if (gameState == GameState.GamePaused)
                 {
                     pauseMenu.SetActive(false);
-                    Time.timeScale = 1;
-                    gameState = GameState.GamePlaying;
+                    if (gameStateBeforePause == GameState.GamePlaying)
+                    {
+                        Time.timeScale = 1;
+                    }
+                    gameState = gameStateBeforePause;
                 }
-                else if (gameState == GameState.GamePlaying)
+                else if (gameState == GameState.GamePlaying
+                    || gameState == GameState.GameStart)
                 {
+                    gameStateBeforePause = gameState;
                     pauseMenu.SetActive(true);
                     Time.timeScale = 0;
                     gameState = GameState.GamePaused;
