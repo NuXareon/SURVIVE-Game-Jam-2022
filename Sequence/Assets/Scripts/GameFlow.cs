@@ -88,6 +88,13 @@ public class GameFlow : MonoBehaviour
         StartCoroutine(ExitGame());
     }
 
+    public void OnCompleteGame()
+    {
+        gameState = GameState.LevelEnd;
+        Time.timeScale = 0;
+        StartCoroutine(GoToMainMenu(true));
+    }
+
     IEnumerator FinishLevel()
     {
         int audioClip = Random.Range(0, 2);
@@ -158,5 +165,18 @@ public class GameFlow : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.2f);
 
         Application.Quit();
+    }
+
+    IEnumerator GoToMainMenu(bool gameCompleted)
+    {
+        if (gameCompleted)
+        { 
+            levelCompletedAudio1.Play();
+            levelCompletedAudio2.Play();
+
+            yield return new WaitForSecondsRealtime(3.0f);
+        }
+
+        SceneManager.LoadScene(0);
     }
 }
